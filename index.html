@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decern · Credit for businesses the bureau can't see</title>
+<meta name="description" content="Decern helps lenders say yes to more SMEs, including women-led businesses: explainable credit scoring that reads how a business actually runs, not just its credit file.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Decern · Credit for businesses the bureau can't see">
+<meta property="og:description" content="Decern helps lenders say yes to more SMEs, including women-led businesses: explainable credit scoring that reads how a business actually runs, not just its credit file.">
+<meta property="og:image" content="/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&amp;family=Geist+Mono:wght@400;500&amp;family=Instrument+Serif:ital@1&amp;display=swap" rel="stylesheet">
+<style>
+/* ── Design tokens ── */
+:root{
+  --bg:#000000;
+  --surface:#050608;
+  --surface-alt:#07090D;
+  --line:rgba(255,255,255,0.10);
+  --line-strong:rgba(255,255,255,0.12);
+  --line-pill:rgba(255,255,255,0.22);
+  --text:#F5F3EF;
+  --text-body:#EEEEEC;
+  --text-muted:#B5B3AD;
+  --text-subtle:#8F8F8F;
+  --accent:#2F7BFF;
+  --accent-soft:#A4D3F1;
+  --accent-deep:#1D4ED8;
+  --risk:#FF9A5C;
+  --risk-text:#FFB98C;
+  --ok:#3DD68C;
+  --ok-text:#6FE3AB;
+}
+
+/* ── Base ── */
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text-body);font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-soft)}a:hover{color:#D3ECFB}
+img{max-width:100%}
+section{scroll-margin-top:24px}
+
+/* ── Typography ── */
+.serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-0.01em}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+
+/* ── Layout: framed section ── */
+.frame{max-width:1280px;margin:0 auto;border-left:1px solid var(--line);border-right:1px solid var(--line);box-sizing:border-box}
+
+/* ── Section header (eyebrow + h2 left, paragraph right) ── */
+.section-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px}
+.eyebrow{font-size:14px;color:var(--accent-soft);text-transform:uppercase;letter-spacing:0.01em}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px;border-radius:999px;font-size:15px;font-weight:500;letter-spacing:-0.02em;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;box-sizing:border-box}
+.btn-primary{background:#FFFFFF;color:#000000}.btn-primary:hover{background:#E6E6E3;color:#000000}
+.btn-ghost{background:var(--bg);color:#FFFFFF;border-color:var(--line-pill)}.btn-ghost:hover{border-color:rgba(255,255,255,.55);color:#FFFFFF}
+
+/* ── Component: product snippet card ── */
+.snippet{background:var(--surface-alt);border:1px solid var(--line-strong);border-radius:12px}
+
+/* ── Component: card ── */
+.card{background:var(--surface);border:1px solid rgba(255,255,255,0.14);border-radius:16px;padding:24px}
+
+/* ── Component: feature cell ── */
+.feature-cell{display:flex;align-items:center;gap:14px;padding:28px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* ── Component: example tag ── */
+.example-tag{font-size:10.5px;color:var(--text-subtle);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:2px 6px}
+
+/* ── Component: roadmap pill ── */
+.roadmap-pill{font-size:13px;padding:7px 14px;border-radius:999px;border:1px dashed rgba(255,255,255,0.28);color:var(--text-muted)}
+
+/* ── Component: stat cell ── */
+.stat-cell{padding:36px 40px;border-right:1px solid var(--line)}
+
+/* ── Component: step cell ── */
+.step-cell{padding:36px 28px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+
+/* ── Component: regulation pill ── */
+.reg-pill{font-size:15px;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.2)}
+
+/* ── Navigation ── */
+.navlink{color:#D8D8E6;text-decoration:none;font-size:13px}.navlink:hover{color:#FFFFFF}
+
+/* ── Footer wordmark ── */
+.dotword{background-image:radial-gradient(circle,var(--text-body) 0 34%,transparent 38%);background-size:9px 9px;-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ── Accessibility ── */
+:focus-visible{outline:2px solid var(--accent-soft);outline-offset:2px}
+
+/* ── Responsive ── */
+@media(max-width:760px){
+  .navlinks{display:none !important}
+  .h1{font-size:44px !important}
+  .h2{font-size:34px !important}
+  .giant{font-size:56px !important;white-space:normal !important;padding:0 24px !important;width:100%;box-sizing:border-box}
+  .dotword{font-size:88px !important}
+  .pad{padding-left:24px !important;padding-right:24px !important}
+}
+
+/* ── Reduced motion ── */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div style="background:var(--bg);overflow:hidden">
+
+<!-- ════ Announcement bar ════ -->
+<a href="#platform" style="position:relative;display:block;overflow:hidden;text-align:center;padding:12px 16px;font-size:13px;font-weight:500;color:#FFFFFF;text-decoration:none;background:#04070F;border-bottom:1px solid rgba(255,255,255,0.08)"><img src="/assets/pixel-band.webp" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none"><span style="position:relative;background:#04070F;padding:5px 14px;border-radius:999px">Introducing Decern Credit ›</span></a>
+
+<!-- ════ Header ════ -->
+<header style="border-bottom:1px solid var(--line);background:var(--bg)">
+<div class="pad" style="max-width:1280px;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+<a href="#top" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#FFFFFF">
+<img src="/assets/logo.webp" alt="Decern logo" width="122" height="93" style="width:20px;height:auto">
+<span style="font-size:18px;font-weight:500;letter-spacing:-0.02em">Decern</span>
+</a>
+<nav class="navlinks" aria-label="Main" style="display:flex;gap:32px">
+<a class="navlink" href="#sme">For SMEs</a>
+<a class="navlink" href="#engine">Engine</a>
+<a class="navlink" href="#fair">Fairness</a>
+<a class="navlink" href="#platform">Platform</a>
+<a class="navlink" href="#about">Company</a>
+</nav>
+<a class="btn btn-primary" href="#demo" style="min-height:38px;padding:0 16px;font-size:14px">Book a demo</a>
+</div>
+</header>
+
+<!-- ════ #top Hero ════ -->
+<section id="top" class="frame" style="position:relative">
+<img src="/assets/cowrie-hero.webp" alt="" fetchpriority="high" style="position:absolute;right:-140px;top:-10px;width:900px;max-width:90%;height:auto;opacity:0.6;pointer-events:none;-webkit-mask-image:radial-gradient(closest-side,#000 55%,transparent 100%);mask-image:radial-gradient(closest-side,#000 55%,transparent 100%)">
+<div class="pad" style="position:relative;padding:112px 64px 64px;display:flex;flex-direction:column;gap:28px;max-width:680px">
+<div class="mono" style="display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:0.03em;color:#FFFFFF">
+<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="M7 0L0 8h5l-1 6 7-8H6z" fill="#FFFFFF"></path></svg>
+EXPLAINABLE CREDIT AI FOR SMEs
+</div>
+<h1 class="h1" style="margin:0;font-size:64px;line-height:1.04;letter-spacing:-0.03em;font-weight:400;color:var(--text-body)">Credit for businesses <br><span class="serif" style="font-size:1.1em">the bureau can't see</span></h1>
+<p style="margin:0;font-size:17px;line-height:1.55;color:var(--text-muted);max-width:560px">Decern reads how a business actually runs, not just its credit file. Lenders can say yes to more SMEs, including women-led businesses, and explain every decision.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<a class="btn btn-primary" href="#demo">Book a demo</a>
+<a class="btn btn-ghost" href="#sme">See how it works</a>
+</div>
+</div>
+<div class="pad" style="position:relative;padding:72px 64px 72px">
+<a href="#platform" style="display:inline-flex;align-items:center;gap:14px;padding:14px 20px 14px 16px;background-color:var(--accent-deep);background-image:radial-gradient(rgba(255,255,255,0.16) 1px,transparent 1.4px);background-size:6px 6px;text-decoration:none;color:#FFFFFF">
+<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><g fill="#FFFFFF"><rect x="2" y="2" width="5" height="5"></rect><rect x="12" y="2" width="5" height="5"></rect><rect x="22" y="2" width="5" height="5"></rect><rect x="2" y="12" width="5" height="5"></rect><rect x="12" y="12" width="5" height="5"></rect><rect x="22" y="12" width="5" height="5"></rect><rect x="2" y="22" width="5" height="5"></rect><rect x="12" y="22" width="5" height="5"></rect></g></svg>
+<span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:19px;letter-spacing:-0.02em">The credit module</span><span style="font-size:12px;opacity:0.85">See a live assessment →</span></span>
+</a>
+</div>
+</section>
+
+<!-- ════ #sme Built for thin-file SMEs ════ -->
+<section id="sme" class="frame" style="border-top:1px solid var(--line)">
+<div class="pad section-head" style="padding:112px 64px 56px">
+<div style="display:flex;flex-direction:column;gap:18px;max-width:680px">
+<div class="eyebrow">Built for thin-file SMEs</div>
+<h2 class="h2" style="margin:0;font-size:52px;line-height:1.12;letter-spacing:-0.02em;font-weight:400;color:var(--text)">Score the business, <br><span class="serif" style="font-size:1.1em">not just the file</span></h2>
+</div>
+<p style="margin:0;max-width:380px;font-size:16px;line-height:1.55;color:var(--text-muted)">Many SMEs, especially women-led businesses, have little formal credit history. Decern looks at how the business actually moves money.</p>
+</div>
+<div style="border-top:1px solid var(--line);display:flex;flex-wrap:wrap">
+<div class="pad" style="flex:1 1 520px;min-width:0;padding:48px 64px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:28px">
+<div class="mono" style="font-size:12px;color:var(--text-subtle);letter-spacing:0.04em">SIGNALS READ TODAY</div>
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent-soft)" stroke-width="1.5" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M3 14l4-4 3 3 6-7"></path></svg><div><div style="font-size:17px;color:var(--text)">Account inflows and outflows</div><div style="font-size:14px;color:var(--text-muted);margin-top:3px">How money moves in and out, month by month.</div></div></div>
+<div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent-soft)" stroke-width="1.5" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M2 12l3-5 3 4 3-6 3 5 4-3"></path></svg><div><div style="font-size:17px;color:var(--text)">Balance trajectory</div><div style="font-size:14px;color:var(--text-muted);margin-top:3px">Whether the business recovers after each dip, or keeps running down.</div></div></div>
+<div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent-soft)" stroke-width="1.5" style="flex:none;margin-top:2px" aria-hidden="true"><path d="M3 9l7-6 7 6v8H3z"></path><path d="M8 17v-5h4v5"></path></svg><div><div style="font-size:17px;color:var(--text)">Rent and utility payments</div><div style="font-size:14px;color:var(--text-muted);margin-top:3px">A record of paying on time, even without a loan history.</div></div></div>
+<div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent-soft)" stroke-width="1.5" style="flex:none;margin-top:2px" aria-hidden="true"><ellipse cx="10" cy="5" rx="6" ry="2.2"></ellipse><path d="M4 5v4c0 1.2 2.7 2.2 6 2.2s6-1 6-2.2V5M4 9v4c0 1.2 2.7 2.2 6 2.2s6-1 6-2.2V9"></path></svg><div><div style="font-size:17px;color:var(--text)">Savings and balances</div><div style="font-size:14px;color:var(--text-muted);margin-top:3px">What the business has built up with your institution.</div></div></div>
+<div style="display:flex;gap:16px;padding:16px 0"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--accent-soft)" stroke-width="1.5" style="flex:none;margin-top:2px" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"></rect><circle cx="8" cy="9" r="1.8"></circle><path d="M11.5 8h3M11.5 11h3M5.5 13c.5-1.2 1.4-1.8 2.5-1.8s2 .6 2.5 1.8"></path></svg><div><div style="font-size:17px;color:var(--text)">One verified identity</div><div style="font-size:14px;color:var(--text-muted);margin-top:3px">BVN and NIN pull scattered records into one profile.</div></div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+<span class="mono" style="font-size:11px;color:var(--text-subtle);letter-spacing:0.04em;margin-right:6px">ON THE ROADMAP</span>
+<span class="roadmap-pill">Mobile money activity</span>
+<span class="roadmap-pill">POS sales</span>
+<span class="roadmap-pill">Invoices and marketplace sales</span>
+</div>
+</div>
+<div style="flex:1 1 420px;min-width:0;padding:48px 40px;display:flex;align-items:center;justify-content:center;background-image:radial-gradient(rgba(164,211,241,0.10) 1px,transparent 1.3px);background-size:12px 12px">
+<div class="card" style="width:100%;max-width:420px;box-sizing:border-box;display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:40px;height:40px;border-radius:10px;background:#12305F;color:#D3ECFB;display:flex;align-items:center;justify-content:center;font-size:14px">AT</span><div><div style="font-size:17px;color:var(--text)">Amina's Tailoring</div><div class="mono" style="font-size:11px;color:var(--text-subtle);margin-top:2px">KANO · TRADING 3 YEARS</div></div><span class="mono example-tag" style="margin-left:auto">EXAMPLE</span></div>
+<div style="display:flex;justify-content:space-between;font-size:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.08)"><span style="color:var(--text-muted)">Credit bureau file</span><span style="color:var(--risk-text)">None</span></div>
+<div style="display:flex;flex-direction:column;gap:10px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.08)">
+<div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:var(--text-muted)">Monthly inflows, last 6 months</span><span style="color:var(--accent-soft)">Rising</span></div>
+<div style="display:flex;align-items:flex-end;gap:6px;height:56px"><div style="flex:1;height:30px;background:var(--accent-deep);border-radius:3px 3px 0 0"></div><div style="flex:1;height:36px;background:var(--accent-deep);border-radius:3px 3px 0 0"></div><div style="flex:1;height:34px;background:var(--accent-deep);border-radius:3px 3px 0 0"></div><div style="flex:1;height:42px;background:var(--accent);border-radius:3px 3px 0 0"></div><div style="flex:1;height:48px;background:var(--accent);border-radius:3px 3px 0 0"></div><div style="flex:1;height:56px;background:var(--accent-soft);border-radius:3px 3px 0 0"></div></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:14px"><span style="color:var(--text-muted)">Rent paid on time</span><span style="color:var(--ok-text)">12 of 12 months</span></div>
+<div style="display:flex;justify-content:space-between;font-size:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.08)"><span style="color:var(--text-muted)">Utility bills</span><span style="color:var(--ok-text)">On time</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div><div style="font-size:26px;letter-spacing:-0.02em;color:var(--text)">6.9% PD</div><div class="mono" style="font-size:11px;color:var(--accent-soft);margin-top:2px">TIER B · APPROVE ZONE</div></div>
+<div style="text-align:right"><div style="font-size:12px;color:var(--text-subtle)">Matched product</div><div style="font-size:14px;color:var(--text);margin-top:2px">Working capital · 12 months</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ════ #engine The scoring engine ════ -->
+<section id="engine" class="frame" style="border-top:1px solid var(--line)">
+<div style="position:relative;height:300px;overflow:hidden;display:flex;align-items:center;justify-content:flex-end">
+<img loading="lazy" decoding="async" src="/assets/cowrie-hero.webp" alt="" style="position:absolute;left:38%;top:-170px;width:640px;height:auto;transform:rotate(-12deg);pointer-events:none">
+<h2 class="giant" style="position:relative;margin:0;padding-right:48px;font-size:104px;line-height:1;letter-spacing:-0.03em;font-weight:400;white-space:nowrap"><span class="serif">The scoring</span> engine</h2>
+</div>
+<div class="pad" style="border-top:1px solid var(--line);padding:64px;display:flex;flex-wrap:wrap;gap:40px 64px;align-items:flex-start;justify-content:space-between">
+<div style="flex:1 1 460px;display:flex;flex-direction:column;gap:16px">
+<div class="eyebrow" style="font-size:15px">The scoring engine</div>
+<h3 class="h2" style="margin:0;font-size:44px;line-height:1.2;letter-spacing:-0.015em;font-weight:400;color:var(--text)">Three models. One score. Every reason shown.</h3>
+</div>
+<div style="flex:1 1 360px;max-width:420px;display:flex;flex-direction:column;gap:24px">
+<p style="margin:0;font-size:18px;line-height:1.55;color:var(--text)">It reads the application and the account's history, then tells your officer why.</p>
+<a class="btn btn-primary" href="#platform" style="align-self:flex-start;min-height:40px;font-size:14px">See an assessment</a>
+</div>
+</div>
+<div style="border-top:1px solid var(--line);padding:56px 24px;display:flex;flex-direction:column;align-items:center;gap:18px;background-image:radial-gradient(rgba(164,211,241,0.10) 1px,transparent 1.3px);background-size:12px 12px">
+<div style="width:100%;max-width:760px;box-sizing:border-box;background:var(--bg);border:1px solid var(--line-strong);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px;color:var(--text)">
+<span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:3px;border-radius:2px;background:var(--accent-soft)"></span>Customer A · recovering</span>
+<span style="display:flex;align-items:center;gap:8px"><span style="width:18px;height:3px;border-radius:2px;background:var(--risk)"></span>Customer B · running down</span>
+</div>
+<svg viewBox="0 0 560 150" style="width:100%;height:auto;display:block" role="img" aria-label="Customer A's balance recovers after each salary credit; Customer B's trends down; both reach the same balance today">
+<line x1="0" y1="70" x2="560" y2="70" stroke="rgba(255,255,255,0.3)" stroke-dasharray="4 4"></line>
+<polyline points="0,58 0,22 80,74 80,32 160,88 160,40 240,100 240,46 320,110 320,50 400,120 400,52 480,128 480,54 540,70" fill="none" stroke="var(--risk)" stroke-width="2.2" stroke-linejoin="round"></polyline>
+<polyline points="0,100 0,38 80,98 80,36 160,96 160,34 240,95 240,33 320,96 320,34 400,94 400,32 480,95 480,33 540,70" fill="none" stroke="var(--accent-soft)" stroke-width="2.2" stroke-linejoin="round"></polyline>
+<circle cx="540" cy="70" r="5" fill="#FFFFFF"></circle>
+</svg>
+</div>
+<div style="font-size:15px;color:var(--text-muted)">Same balance today. <span class="serif" style="font-size:18px;color:var(--text)">Different futures.</span></div>
+</div>
+<div style="border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div class="feature-cell"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#FFFFFF" stroke-width="1.4" aria-hidden="true"><rect x="4" y="3" width="14" height="16" rx="3"></rect><circle cx="11" cy="9" r="2.5"></circle><path d="M7 16c1-2 2.4-3 4-3s3 1 4 3"></path></svg><span style="font-size:19px;letter-spacing:-0.01em">BVN &amp; NIN matching</span></div>
+<div class="feature-cell"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#FFFFFF" stroke-width="1.4" aria-hidden="true"><path d="M11 2.5l7 3V11c0 4-3 7-7 8.5C7 18 4 15 4 11V5.5z"></path></svg><span style="font-size:19px;letter-spacing:-0.01em">Sanctions &amp; PEP checks</span></div>
+<div class="feature-cell"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#FFFFFF" stroke-width="1.4" aria-hidden="true"><path d="M3 15l4-4 3 3 5-6 4 3"></path></svg><span style="font-size:19px;letter-spacing:-0.01em">Trajectory-aware</span></div>
+<div class="feature-cell"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#FFFFFF" stroke-width="1.4" aria-hidden="true"><path d="M4 5h14v9H9l-4 3v-3H4z"></path></svg><span style="font-size:19px;letter-spacing:-0.01em">Plain-language reasons</span></div>
+<div class="feature-cell" style="border-right:0"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#FFFFFF" stroke-width="1.4" aria-hidden="true"><path d="M5 7h10l-3-3M17 15H7l3 3"></path></svg><span style="font-size:19px;letter-spacing:-0.01em">Counterfactuals</span></div>
+</div>
+</section>
+
+<!-- ════ #platform From application to repayment ════ -->
+<section id="platform" class="frame">
+<div class="pad" style="padding:128px 64px 72px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+<div class="eyebrow">The credit platform</div>
+<h2 class="h2" style="margin:0;font-size:52px;line-height:1.15;letter-spacing:-0.015em;font-weight:400;color:var(--text)">From application <span class="serif" style="font-size:1.1em">to repayment</span></h2>
+<p style="margin:0;max-width:520px;font-size:15px;line-height:1.5;color:rgba(255,255,255,0.65)">One flow for every loan. Every outcome trains the model.</p>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:10px">
+<a class="btn btn-primary" href="#demo">Book a demo</a>
+<a class="btn btn-ghost" href="#platform">See the dashboard</a>
+</div>
+</div>
+
+<div style="border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+<div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px;display:flex;flex-direction:column;gap:28px">
+<div style="height:200px;display:flex;align-items:center;justify-content:center">
+<div class="snippet" style="width:100%;max-width:280px;padding:18px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:36px;height:36px;border-radius:8px;background:#12305F;color:#D3ECFB;display:flex;align-items:center;justify-content:center;font-size:13px">AO</span><div><div style="font-size:16px">Adaeze Okafor</div><div class="mono" style="font-size:11px;color:var(--text-subtle)">CUS-P7W2K</div></div><span style="margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--ok)"></span></div>
+<div style="display:flex;gap:8px"><span style="font-size:12px;padding:6px 10px;border-radius:6px;background:#121722;border:1px solid rgba(255,255,255,0.08)">BVN ✓</span><span style="font-size:12px;padding:6px 10px;border-radius:6px;background:#121722;border:1px solid rgba(255,255,255,0.08)">NIN ✓</span><span style="font-size:12px;padding:6px 10px;border-radius:6px;background:#121722;border:1px solid rgba(255,255,255,0.08)">Salary loan</span></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:15px;font-weight:500;color:var(--text)">Capture &amp; identity</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">Bulk upload or single entry. One record per customer.</p></div>
+</div>
+
+<div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px;display:flex;flex-direction:column;gap:28px">
+<div style="height:200px;display:flex;align-items:center;justify-content:center">
+<div class="snippet" style="width:100%;max-width:280px;padding:8px 16px;display:flex;flex-direction:column;font-size:13px">
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><span>UN · OFAC · EU</span><span style="color:var(--ok-text)">Clear</span></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><span>EFCC · NFIU</span><span style="color:var(--ok-text)">Clear</span></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><span>PEP lists</span><span style="color:var(--risk-text)">Review</span></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0"><span>Credit bureau</span><span style="color:var(--text)">1 facility</span></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:15px;font-weight:500;color:var(--text)">Screening</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">Every list, every time. Flags stay on file.</p></div>
+</div>
+
+<div style="border-bottom:1px solid var(--line);padding:40px;display:flex;flex-direction:column;gap:28px">
+<div style="height:200px;display:flex;align-items:center;justify-content:center">
+<div class="snippet" style="width:100%;max-width:280px;padding:18px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:14px">
+<svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="23" fill="none" stroke="#1A2232" stroke-width="6"></circle><circle cx="28" cy="28" r="23" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-dasharray="18 145" transform="rotate(-90 28 28)"></circle></svg>
+<div><div style="font-size:24px;letter-spacing:-0.02em">6.4%</div><div class="mono" style="font-size:11px;color:var(--accent-soft)">TIER B · APPROVE</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;font-size:12px"><span>Steady salary inflows</span><div style="height:5px;border-radius:3px;background:#1A2232"><div style="width:78%;height:5px;border-radius:3px;background:var(--accent)"></div></div></div>
+<div style="display:flex;flex-direction:column;gap:6px;font-size:12px"><span>Utilisation at 68%</span><div style="height:5px;border-radius:3px;background:#1A2232"><div style="width:44%;height:5px;border-radius:3px;background:var(--risk)"></div></div></div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font-size:15px;font-weight:500;color:var(--text)">Explain &amp; decide</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">The reasons, what would change them, and your officer's call.</p></div>
+</div>
+</div>
+
+<div class="pad" style="border-bottom:1px solid var(--line);padding:40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px">
+<div style="flex:1 1 360px;display:flex;flex-direction:column;gap:8px;max-width:520px"><div style="font-size:15px;font-weight:500;color:var(--text)">Audit &amp; learning</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">Every decision reproducible. Every repayment trains the next model.</p></div>
+<div class="snippet" style="flex:0 1 420px;min-width:0;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+<div class="mono" style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-subtle)"><span>MODEL v2.3 · LIVE</span><span style="color:var(--accent-soft)">v2.4 · SHADOW</span></div>
+<svg viewBox="0 0 380 90" style="width:100%;height:auto;display:block" aria-hidden="true"><path d="M0 70 C60 66 100 52 150 48 S260 40 380 36" fill="none" stroke="var(--ok-text)" stroke-width="1.8"></path><path d="M0 74 C60 62 110 44 160 38 S270 26 380 22" fill="none" stroke="var(--accent-soft)" stroke-width="1.8" stroke-dasharray="4 5"></path></svg>
+</div>
+</div>
+</section>
+
+<!-- ════ #connect Connects to the systems you already run ════ -->
+<section id="connect" class="frame" style="border-top:1px solid var(--line)">
+<div class="pad" style="padding:120px 64px 32px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center">
+<h2 class="h2" style="margin:0;font-size:52px;line-height:1.15;letter-spacing:-0.015em;font-weight:400;color:var(--text)">Connects to <span class="serif" style="font-size:1.1em">the systems you already run</span></h2>
+<p style="margin:0;max-width:520px;font-size:15px;line-height:1.5;color:rgba(255,255,255,0.65)">Start standalone. Connect your core systems when you're ready.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px 40px;padding:32px 40px 88px">
+<figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;width:160px"><canvas id="cb-icon" aria-label="Pixel icon of a bank building" style="width:152px;height:152px;display:block"></canvas><figcaption style="font-size:14px;color:#D6D4CE">Core banking</figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;width:160px"><img loading="lazy" decoding="async" src="/assets/loan-management.webp" alt="Pixel icon of a loan document" style="width:152px;height:152px;display:block"><figcaption style="font-size:14px;color:#D6D4CE">Loan management</figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;width:160px"><img loading="lazy" decoding="async" src="/assets/credit-bureaus.webp" alt="Pixel icon of a bar chart report" style="width:152px;height:152px;display:block"><figcaption style="font-size:14px;color:#D6D4CE">Credit bureaus</figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;width:160px"><img loading="lazy" decoding="async" src="/assets/bvn-nin.webp" alt="Pixel icon of an identity card" style="width:152px;height:152px;display:block"><figcaption style="font-size:14px;color:#D6D4CE">BVN &amp; NIN</figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;width:160px"><img loading="lazy" decoding="async" src="/assets/spreadsheets.webp" alt="Pixel icon of a spreadsheet" style="width:152px;height:152px;display:block"><figcaption style="font-size:14px;color:#D6D4CE">Spreadsheets</figcaption></figure>
+</div>
+<div style="border-top:1px solid var(--line);display:flex;flex-wrap:wrap">
+<div class="pad" style="flex:1 1 280px;padding:40px 48px 40px 64px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:12px;justify-content:center"><h3 style="margin:0;font-size:32px;line-height:1.15;font-weight:400;letter-spacing:-0.02em;color:var(--text)">Live in <span class="serif" style="font-size:1.1em">four steps</span></h3><p style="margin:0;font-size:14px;color:rgba(255,255,255,0.65)">From first call to first decision.</p></div>
+<div style="flex:3 1 640px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+<div class="step-cell"><span class="mono" style="font-size:12px;color:var(--accent-soft)">01</span><div style="font-size:18px;color:var(--text)">Set your policy</div><p style="margin:0;font-size:14px;line-height:1.5;color:rgba(245,243,239,0.7)">Tiers, thresholds and pricing from your credit committee.</p></div>
+<div class="step-cell"><span class="mono" style="font-size:12px;color:var(--accent-soft)">02</span><div style="font-size:18px;color:var(--text)">Map your data</div><p style="margin:0;font-size:14px;line-height:1.5;color:rgba(245,243,239,0.7)">Your fields matched to the five Cs. Gaps flagged.</p></div>
+<div class="step-cell"><span class="mono" style="font-size:12px;color:var(--accent-soft)">03</span><div style="font-size:18px;color:var(--text)">Run in shadow</div><p style="margin:0;font-size:14px;line-height:1.5;color:rgba(245,243,239,0.7)">Decern scores alongside your current process.</p></div>
+<div class="step-cell" style="border-right:0;background-color:#03196C74"><span class="mono" style="font-size:12px;color:var(--accent-soft)">04</span><div style="font-size:18px;color:var(--text)">Go live</div><p style="margin:0;font-size:14px;line-height:1.5;color:rgba(245,243,239,0.7)">Officers decide. Outcomes start training the model.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ════ #fair Fair by design ════ -->
+<section id="fair" class="frame" style="border-top:1px solid var(--line);position:relative;overflow:hidden">
+<img loading="lazy" decoding="async" src="/assets/pixel-field.webp" alt="" style="position:absolute;left:0;bottom:0;width:100%;height:auto;pointer-events:none">
+<div class="pad section-head" style="position:relative;padding:120px 64px 56px">
+<div style="display:flex;flex-direction:column;gap:18px;max-width:680px">
+<div class="eyebrow">Fair by design</div>
+<h2 class="h2" style="margin:0;font-size:52px;line-height:1.12;letter-spacing:-0.02em;font-weight:400;color:var(--text)">Inclusive lending <span class="serif" style="font-size:1.1em">has to prove it</span></h2>
+</div>
+<p style="margin:0;max-width:380px;font-size:16px;line-height:1.55;color:var(--text-muted)">The commitments Decern is built around, so more SMEs get a fair hearing.</p>
+</div>
+<div style="position:relative;border-top:1px solid var(--line);display:flex;flex-wrap:wrap">
+<div style="flex:2 1 560px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+<div style="padding:36px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,0.75);display:flex;flex-direction:column;gap:12px"><span class="mono" style="font-size:12px;color:var(--accent-soft)">01</span><div style="font-size:19px;color:var(--text)">No gender input</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">Gender is never a scoring feature.</p></div>
+<div style="padding:36px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,0.75);display:flex;flex-direction:column;gap:12px"><span class="mono" style="font-size:12px;color:var(--accent-soft)">02</span><div style="font-size:19px;color:var(--text)">Tested for bias</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">Approval and error rates compared across groups, including women-led businesses, before any model goes live.</p></div>
+<div style="padding:36px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,0.75);display:flex;flex-direction:column;gap:12px"><span class="mono" style="font-size:12px;color:var(--accent-soft)">03</span><div style="font-size:19px;color:var(--text)">Reasons anyone can read</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">Every decision explained in plain language, for the officer and the business owner.</p></div>
+<div style="padding:36px 40px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,0.75);display:flex;flex-direction:column;gap:12px"><span class="mono" style="font-size:12px;color:var(--accent-soft)">04</span><div style="font-size:19px;color:var(--text)">A path to yes</div><p style="margin:0;font-size:14px;line-height:1.55;color:rgba(245,243,239,0.75)">A declined business sees exactly what would get it approved next time.</p></div>
+</div>
+<div style="flex:1 1 340px;min-width:0;padding:40px;border-bottom:1px solid var(--line);background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center">
+<div class="card" style="width:100%;max-width:360px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:center"><span class="mono" style="font-size:11px;color:var(--risk-text)">NOT YET · TIER D</span><span class="mono example-tag">EXAMPLE</span></div>
+<div style="font-size:18px;line-height:1.35;color:var(--text)">To qualify for <span class="mono" style="color:var(--accent-soft)">₦1,000,000</span>:</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.5;color:#D6D4CE">
+<div style="display:flex;gap:10px"><span style="width:6px;height:6px;margin-top:8px;flex:none;background:var(--accent)"></span>Three more months of steady inflows</div>
+<div style="display:flex;gap:10px"><span style="width:6px;height:6px;margin-top:8px;flex:none;background:var(--accent)"></span>Clear the overdue utility balance</div>
+</div>
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:14px;font-size:14px;color:var(--text-muted)">Or start today with <span class="mono" style="color:var(--text)">₦400,000</span> at Tier C.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ════ #about Built for Nigeria first ════ -->
+<section id="about" class="frame" style="border-top:1px solid var(--line)">
+<div class="pad" style="padding:120px 64px 56px;display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between">
+<div style="flex:1 1 400px;display:flex;flex-direction:column;gap:22px;max-width:480px">
+<div class="eyebrow">Built for Nigeria first</div>
+<h2 class="h2" style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-0.02em;font-weight:400;color:var(--text)">Credit AI for <br><span class="serif" style="font-size:1.1em;font-style:normal">African lenders.</span></h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:var(--text-muted)">Built around BVN, NIN, local watchlists and the rules Nigerian lenders answer to.</p>
+<a class="btn btn-primary" href="#demo" style="align-self:flex-start">Book a demo</a>
+</div>
+<div style="flex:1 1 460px;max-width:600px;position:relative">
+<canvas id="nigeria-map" aria-label="Pixel map of Nigeria with Lagos, Abuja, Kano and Port Harcourt lit up" style="width:100%;display:block;aspect-ratio:1000/825;background:#000"></canvas>
+<span class="mono" style="position:absolute;left:9.3%;top:73.8%;transform:translate(16px,-50%);font-size:11px;color:var(--text);background:rgba(0,0,0,0.75);border:1px solid var(--line-pill);border-radius:4px;padding:3px 7px;white-space:nowrap">LAGOS</span>
+<span class="mono" style="position:absolute;left:41.1%;top:49.9%;transform:translate(16px,-50%);font-size:11px;color:var(--text);background:rgba(0,0,0,0.75);border:1px solid var(--line-pill);border-radius:4px;padding:3px 7px;white-space:nowrap">ABUJA</span>
+<span class="mono" style="position:absolute;left:49.1%;top:22.4%;transform:translate(16px,-50%);font-size:11px;color:var(--text);background:rgba(0,0,0,0.75);border:1px solid var(--line-pill);border-radius:4px;padding:3px 7px;white-space:nowrap">KANO</span>
+<span class="mono" style="position:absolute;left:37.6%;top:89.7%;transform:translate(16px,-50%);font-size:11px;color:var(--text);background:rgba(0,0,0,0.75);border:1px solid var(--line-pill);border-radius:4px;padding:3px 7px;white-space:nowrap">PORT HARCOURT</span>
+</div>
+</div>
+<div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<div class="stat-cell"><div style="font-size:48px;letter-spacing:-0.02em;line-height:1">3</div><div style="font-size:14px;color:var(--text-subtle);margin-top:10px">Models in every score</div></div>
+<div class="stat-cell"><div style="font-size:48px;letter-spacing:-0.02em;line-height:1">8</div><div style="font-size:14px;color:var(--text-subtle);margin-top:10px">Screening sources</div></div>
+<div class="stat-cell"><div style="font-size:48px;letter-spacing:-0.02em;line-height:1">5</div><div style="font-size:14px;color:var(--text-subtle);margin-top:10px">Cs of credit</div></div>
+<div class="stat-cell" style="border-right:0"><div style="font-size:48px;letter-spacing:-0.02em;line-height:1">1</div><div style="font-size:14px;color:var(--text-subtle);margin-top:10px">Audit trail, end to end</div></div>
+</div>
+<div class="pad" style="padding:32px 64px 72px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px">
+<span style="font-size:17px;color:var(--text-muted);margin-right:12px">Designed around</span>
+<span class="reg-pill">NDPA</span>
+<span class="reg-pill">CBN guidance</span>
+<span class="reg-pill">Credit Reporting Act</span>
+<span class="reg-pill">EFCC &amp; NFIU lists</span>
+</div>
+</section>
+
+<!-- ════ #demo Closing CTA ════ -->
+<section id="demo" class="frame" style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;overflow:hidden">
+<div class="pad" style="flex:1 1 440px;padding:96px 64px;display:flex;flex-direction:column;gap:22px">
+<h2 class="h2" style="margin:0;font-size:52px;line-height:1.1;letter-spacing:-0.02em;font-weight:400;color:var(--text)">Lend with confidence. <span class="serif" style="font-size:1.1em">Explain every decision.</span></h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:var(--text-muted);max-width:420px">See it scoring your products, your customers, your rules.</p>
+<a class="btn btn-primary" href="#demo" style="align-self:flex-start;margin-top:24px">Book a demo</a>
+</div>
+<div style="flex:1 1 420px;min-width:0;display:flex;justify-content:center;padding:24px">
+<img loading="lazy" decoding="async" src="/assets/cowrie-trio.webp" alt="Three cowrie shells drawn in glowing blue dots" style="width:100%;max-width:580px;height:auto;display:block">
+</div>
+</section>
+
+<!-- ════ Footer ════ -->
+<footer class="frame" style="overflow:hidden">
+<div class="dotword" aria-hidden="true" style="font-size:210px;line-height:0.95;font-weight:500;letter-spacing:-0.04em;padding:40px 32px 8px;white-space:nowrap">Decern</div>
+<div class="pad" style="border-top:1px solid var(--line);padding:24px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:var(--text-subtle)">
+<span>© 2026 Decern</span>
+<div style="display:flex;gap:24px"><a class="navlink" href="#engine">Engine</a><a class="navlink" href="#platform">Platform</a><a class="navlink" href="#top">Privacy</a><a class="navlink" href="#top">Terms</a></div>
+</div>
+</footer>
+
+</div>
+<script defer src="/assets/cowrie-engine.js"></script>
+<script>
+(function(){
+var cv=document.getElementById('cb-icon');
+if(!cv)return;
+var c=cv.getContext('2d'),
+    LOOP=4000,PITCH=16,CELL=14,SW=304,SH=304,
+    PI2=Math.PI*2,DPR=window.devicePixelRatio||1,
+    bg=[],ic=[],rows;
+
+var img=new Image();
+img.onload=function(){
+  var oc=document.createElement('canvas');
+  oc.width=SW;oc.height=SH;
+  var ox=oc.getContext('2d');
+  ox.drawImage(img,0,0);
+  var px=ox.getImageData(0,0,SW,SH).data;
+  rows=Math.floor(SH/PITCH);
+  var cols=Math.floor(SW/PITCH);
+  for(var gy=0;gy<rows;gy++){
+    for(var gx=0;gx<cols;gx++){
+      var sx=gx*PITCH+(PITCH>>1),sy=gy*PITCH+(PITCH>>1),
+          i=(sy*SW+sx)*4,r=px[i],g=px[i+1],b=px[i+2],a=px[i+3];
+      if(a<30)continue;
+      var obj={x:gx,y:gy,r:r,g:g,b:b,a:a,
+        sp:Math.random()*PI2,sc:1+Math.floor(Math.random()*3)};
+      if(r>170&&g>170&&b>170)ic.push(obj);else bg.push(obj);
+    }
+  }
+  cv.width=152*DPR;cv.height=152*DPR;
+  c.setTransform(DPR,0,0,DPR,0,0);
+  requestAnimationFrame(draw);
+};
+img.src='/assets/core-banking.webp';
+
+function draw(now){
+  var t=(now%LOOP)/LOOP,tr=t*PI2;
+  c.clearRect(0,0,152,152);
+  var sc=152/SW,cd=CELL*sc,pd=PITCH*sc,gap=(pd-cd)/2;
+
+  var gl=[{t:.25,d:.06,r1:5,r2:6,s:2},{t:.68,d:.05,r1:13,r2:13,s:-1.5}];
+  var gi={};
+  for(var g=0;g<gl.length;g++){
+    var e=gl[g];
+    if(t>e.t&&t<e.t+e.d){
+      var loc=(t-e.t)/e.d,sv=e.s*Math.sin(loc*Math.PI)*pd,
+          bv=.3*Math.sin(loc*Math.PI);
+      for(var rr=e.r1;rr<=e.r2;rr++)gi[rr]={s:sv,b:bv};
+    }
+  }
+
+  for(var i=0;i<bg.length;i++){
+    var p=bg[i],br=1+.09*Math.sin(tr*p.sc+p.sp),xo=0,
+        gf=gi[p.y];
+    if(gf){xo=gf.s;br+=gf.b}
+    c.fillStyle='rgba('+Math.min(255,p.r*br|0)+','+Math.min(255,p.g*br|0)+','+Math.min(255,p.b*br|0)+','+(p.a/255).toFixed(2)+')';
+    c.fillRect(p.x*pd+gap+xo,p.y*pd+gap,cd,cd);
+  }
+  for(var i=0;i<ic.length;i++){
+    var p=ic[i];
+    c.fillStyle='rgba('+p.r+','+p.g+','+p.b+','+(p.a/255).toFixed(2)+')';
+    c.fillRect(p.x*pd+gap,p.y*pd+gap,cd,cd);
+  }
+  requestAnimationFrame(draw);
+}
+})();
+
+(function(){
+var cv=document.getElementById('nigeria-map');
+if(!cv)return;
+var c=cv.getContext('2d'),
+    LOOP=6000,PITCH=18,CELL=15,SW=1000,SH=825,
+    PI2=Math.PI*2,
+    cities=[
+      {fx:.08,fy:.69,ph:0},
+      {fx:.43,fy:.45,ph:1.57},
+      {fx:.50,fy:.19,ph:3.14},
+      {fx:.38,fy:.87,ph:4.71}
+    ],
+    grid=[],streams=[],cols,rows,cw,ch,sc,mapSet={};
+
+function bres(x0,y0,x1,y1){
+  var p=[],dx=Math.abs(x1-x0),dy=Math.abs(y1-y0),
+      sx=x0<x1?1:-1,sy=y0<y1?1:-1,e=dx-dy,x=x0,y=y0;
+  for(;;){p.push(x+','+y);if(x===x1&&y===y1)break;
+    var e2=2*e;if(e2>-dy){e-=dy;x+=sx}if(e2<dx){e+=dx;y+=sy}}
+  return p;
+}
+
+var img=new Image();
+img.onload=function(){
+  var oc=document.createElement('canvas');
+  oc.width=SW;oc.height=SH;
+  var ox=oc.getContext('2d');
+  ox.drawImage(img,0,0,SW,SH);
+  var px=ox.getImageData(0,0,SW,SH).data;
+  cols=Math.floor(SW/PITCH);rows=Math.floor(SH/PITCH);
+
+  for(var gy=0;gy<rows;gy++){
+    for(var gx=0;gx<cols;gx++){
+      var sx=Math.floor(gx*PITCH+PITCH/2),sy=Math.floor(gy*PITCH+PITCH/2),
+          i=(sy*SW+sx)*4;
+      if(px[i+3]>30){
+        var k=gx+','+gy;
+        mapSet[k]=1;
+        grid.push({x:gx,y:gy,r:px[i],g:px[i+1],b:px[i+2],a:px[i+3],
+          sp:Math.random()*PI2,sc:1+Math.floor(Math.random()*3)});
+      }
+    }
+  }
+
+  var cg=cities.map(function(ci){return{
+    x:Math.round(ci.fx*SW/PITCH),y:Math.round(ci.fy*SH/PITCH)};});
+  var pairs=[[0,1],[1,2],[1,3],[0,3]];
+  for(var pi=0;pi<pairs.length;pi++){
+    var raw=bres(cg[pairs[pi][0]].x,cg[pairs[pi][0]].y,
+                 cg[pairs[pi][1]].x,cg[pairs[pi][1]].y);
+    var filt=raw.filter(function(k){return mapSet[k]});
+    streams.push({path:filt,cyc:pi<2?2:3,off:pi*0.25});
+  }
+
+  resize();
+  window.addEventListener('resize',resize);
+  requestAnimationFrame(draw);
+};
+img.src='/assets/nigeria.webp';
+
+function resize(){
+  var w=cv.clientWidth,h=cv.clientHeight,d=window.devicePixelRatio||1;
+  cv.width=w*d;cv.height=h*d;
+  cw=w;ch=h;sc=w/SW;
+  c.setTransform(d,0,0,d,0,0);
+}
+
+function draw(now){
+  var t=(now%LOOP)/LOOP,tr=t*PI2;
+  c.clearRect(0,0,cw,ch);
+
+  c.save();
+
+  var glitchRows={};
+  var ge=[{t:.15,row:Math.floor(rows*.25),d:.025},
+          {t:.48,row:Math.floor(rows*.55),d:.02},
+          {t:.78,row:Math.floor(rows*.75),d:.025}];
+  for(var gi=0;gi<ge.length;gi++){
+    if(t>ge[gi].t&&t<ge[gi].t+ge[gi].d){
+      var loc=(t-ge[gi].t)/ge[gi].d;
+      glitchRows[ge[gi].row]=0.3*(0.5+0.5*Math.sin(loc*Math.PI*6));
+    }
+  }
+
+  var sb={};
+  for(var si=0;si<streams.length;si++){
+    var s=streams[si],len=s.path.length;
+    if(!len)continue;
+    var head=((t*s.cyc+s.off)%1)*len,tail=10;
+    for(var i=0;i<len;i++){
+      var dist=head-i;if(dist<0)dist+=len;
+      if(dist<tail){var bv=1-dist/tail;bv*=bv;
+        var pk=s.path[i];sb[pk]=Math.max(sb[pk]||0,bv);}
+    }
+  }
+
+  var cd=CELL*sc,pd=PITCH*sc,gap=(pd-cd)/2;
+
+  for(var ci=0;ci<grid.length;ci++){
+    var cell=grid[ci],
+        br=1,cr=cell.r,cg2=cell.g,cb=cell.b;
+
+    br+=0.07*Math.sin(tr*cell.sc+cell.sp);
+
+    for(var j=0;j<cities.length;j++){
+      var ct=cities[j],
+          cgx=ct.fx*SW/PITCH,cgy=ct.fy*SH/PITCH,
+          dx=cell.x-cgx,dy=cell.y-cgy,
+          d=Math.sqrt(dx*dx+dy*dy);
+      if(d<7){
+        br+=0.4*(0.5+0.5*Math.sin(tr*2+ct.ph))*Math.max(0,1-d/7);
+      }
+    }
+
+    var sk=cell.x+','+cell.y,sv=sb[sk];
+    if(sv){
+      cr=cr+sv*(200-cr)*0.5;
+      cg2=cg2+sv*(230-cg2)*0.5;
+      cb=cb+sv*(255-cb)*0.3;
+      br+=sv*0.6;
+    }
+
+    var gv=glitchRows[cell.y];
+    if(gv)br+=gv;
+
+    cr=Math.min(255,Math.max(0,cr*br));
+    cg2=Math.min(255,Math.max(0,cg2*br));
+    cb=Math.min(255,Math.max(0,cb*br));
+
+    c.fillStyle='rgba('+(cr|0)+','+(cg2|0)+','+(cb|0)+','+(cell.a/255).toFixed(2)+')';
+    c.fillRect(cell.x*pd+gap,cell.y*pd+gap,cd,cd);
+  }
+
+  c.restore();
+  requestAnimationFrame(draw);
+}
+})();
+</script>
+</body>
+</html>
