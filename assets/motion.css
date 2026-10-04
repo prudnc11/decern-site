@@ -1,0 +1,320 @@
+/* ── Motion tokens ── */
+:root{
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-inout:cubic-bezier(0.65,0,0.35,1);
+  --ease-hover:cubic-bezier(0.25,0.1,0.25,1);
+  --dur-hover:220ms;
+  --dur-sm:480ms;
+  --dur-md:800ms;
+  --dur-lg:1200ms;
+  --stagger:70ms;
+  --rise:20px;
+  --rise-sm:10px;
+}
+@media(hover:none){
+  :root{--rise:12px;--rise-sm:8px}
+}
+
+/* ── Selection ── */
+::selection{background:#2F7BFF;color:#FFFFFF}
+
+/* ── Scroll progress bar ── */
+.motion .scroll-progress{
+  position:fixed;top:0;left:0;right:0;height:1px;z-index:1001;
+  background:var(--accent);transform-origin:left;transform:scaleX(0);
+  pointer-events:none;
+}
+
+/* ── Sticky header states ── */
+.motion header[data-header]{
+  position:sticky;top:0;z-index:1000;
+  transition:transform 400ms var(--ease-out),background 300ms var(--ease-out),
+             backdrop-filter 300ms var(--ease-out),border-color 300ms var(--ease-out);
+}
+.motion header[data-header].scrolled{
+  background:rgba(0,0,0,0.72)!important;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom-color:var(--line)!important;
+}
+.motion header[data-header].hidden{
+  transform:translateY(-100%);
+}
+
+/* ── Active nav dot ── */
+.motion .navlink{position:relative}
+.motion .navlink::after{
+  content:'';position:absolute;left:50%;bottom:-6px;
+  width:4px;height:4px;border-radius:50%;background:var(--accent-soft);
+  transform:translateX(-50%) scale(0);opacity:0;
+  transition:transform 300ms var(--ease-out),opacity 300ms var(--ease-out);
+}
+.motion .navlink.active::after{transform:translateX(-50%) scale(1);opacity:1}
+
+/* ══════════════════════════════════════════════════
+   REVEAL SYSTEM — hidden states under .motion only
+   ══════════════════════════════════════════════════ */
+
+/* data-reveal="up" */
+.motion [data-reveal="up"]{
+  opacity:0;transform:translateY(var(--rise));
+  transition:opacity var(--dur-md) var(--ease-out),
+             transform var(--dur-md) var(--ease-out);
+}
+.motion [data-reveal="up"].revealed{opacity:1;transform:translateY(0)}
+
+/* data-reveal="fade" */
+.motion [data-reveal="fade"]{
+  opacity:0;
+  transition:opacity var(--dur-md) var(--ease-out);
+}
+.motion [data-reveal="fade"].revealed{opacity:1}
+
+/* data-reveal="scale" */
+.motion [data-reveal="scale"]{
+  opacity:0;transform:scale(1.04);
+  transition:opacity var(--dur-lg) var(--ease-out),
+             transform var(--dur-lg) var(--ease-out);
+}
+.motion [data-reveal="scale"].revealed{opacity:1;transform:scale(1)}
+
+/* data-reveal="line" — horizontal rules drawing in */
+.motion [data-reveal="line"]{
+  transform:scaleX(0);transform-origin:left;
+  transition:transform var(--dur-lg) var(--ease-inout);
+}
+.motion [data-reveal="line"].revealed{transform:scaleX(1)}
+
+/* data-reveal="line-v" — vertical lines */
+.motion [data-reveal="line-v"]{
+  transform:scaleY(0);transform-origin:top;
+  transition:transform var(--dur-lg) var(--ease-inout);
+}
+.motion [data-reveal="line-v"].revealed{transform:scaleY(1)}
+
+/* Mask reveal for headings — applied by JS via .mask-line / .mask-inner */
+.motion .mask-line{
+  display:block;overflow:hidden;
+}
+.motion .mask-inner{
+  display:block;
+  transform:translateY(105%);
+  transition:transform var(--dur-md) var(--ease-out);
+}
+.motion .mask-inner.revealed{transform:translateY(0)}
+
+/* Serif accent blur */
+.motion .serif-reveal{
+  opacity:0;filter:blur(6px);
+  transition:opacity var(--dur-md) var(--ease-out),
+             filter var(--dur-md) var(--ease-out);
+}
+.motion .serif-reveal.revealed{opacity:1;filter:blur(0)}
+
+/* ── Stagger children ── */
+.motion [data-stagger]>*{
+  opacity:0;transform:translateY(var(--rise));
+  transition:opacity var(--dur-md) var(--ease-out),
+             transform var(--dur-md) var(--ease-out);
+}
+.motion [data-stagger].revealed>*{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════════
+   PAGE LOAD — hero sequence (not scroll)
+   ══════════════════════════════════════════ */
+.motion [data-hero]{
+  opacity:0;transform:translateY(var(--rise));
+}
+.motion [data-hero].revealed{
+  opacity:1;transform:translateY(0);
+  transition:opacity var(--dur-md) var(--ease-out),
+             transform var(--dur-md) var(--ease-out);
+}
+.motion [data-hero="bar"]{transform:translateY(0)}
+.motion [data-hero="header"]{--rise:8px}
+.motion [data-hero="artwork"]{
+  transform:scale(1.06);
+  transition:opacity 1600ms var(--ease-out),
+             transform 1600ms var(--ease-out);
+}
+.motion [data-hero="artwork"].revealed{opacity:0.6;transform:scale(1)}
+
+/* Announcement bar pixel-band drift */
+.motion [data-hero="bar"].revealed .pixel-drift{
+  animation:pixel-drift 40s linear infinite;
+}
+@keyframes pixel-drift{
+  to{background-position:400px 0}
+}
+
+/* ══════════════════════════════════════
+   HOVER & INTERACTION
+   ══════════════════════════════════════ */
+
+/* Primary button */
+@media(hover:hover) and (pointer:fine){
+  .motion .btn-primary{
+    position:relative;overflow:hidden;
+    transition:background var(--dur-hover) var(--ease-hover),
+               transform var(--dur-hover) var(--ease-hover);
+  }
+  .motion .btn-primary .btn-arrow{
+    display:inline-block;
+    transition:transform var(--dur-hover) var(--ease-hover);
+  }
+  .motion .btn-primary:hover .btn-arrow{transform:translateX(3px)}
+  .motion .btn-primary:hover{background:#EDEDEA}
+  .motion .btn-primary:active{transform:scale(0.98)}
+  .motion .btn-primary::after{
+    content:'';position:absolute;top:0;left:-75%;
+    width:50%;height:100%;
+    background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.10) 50%,transparent 60%);
+    transition:none;
+  }
+  .motion .btn-primary:hover::after{
+    animation:sheen 600ms var(--ease-out) forwards;
+  }
+  @keyframes sheen{to{left:125%}}
+
+  /* Ghost button */
+  .motion .btn-ghost{
+    transition:border-color var(--dur-hover) var(--ease-hover),
+               background var(--dur-hover) var(--ease-hover);
+  }
+  .motion .btn-ghost:hover{
+    border-color:rgba(255,255,255,0.45);
+    background:rgba(255,255,255,0.04);
+  }
+
+  /* Nav & text link underline */
+  .motion .navlink{
+    position:relative;
+    transition:color var(--dur-hover) var(--ease-hover);
+  }
+  .motion .navlink::before{
+    content:'';position:absolute;left:0;bottom:-2px;
+    width:100%;height:1px;background:currentColor;
+    transform-origin:left;transform:scaleX(0);
+    transition:transform 300ms var(--ease-hover);
+  }
+  .motion .navlink:hover::before{transform:scaleX(1);transform-origin:left}
+  .motion .navlink:not(:hover)::before{transform-origin:right}
+
+  /* Cards / bento cells glow */
+  .motion .card,
+  .motion .snippet,
+  .motion .feature-cell{
+    position:relative;overflow:hidden;
+    transition:border-color var(--dur-hover) var(--ease-hover),
+               transform var(--dur-hover) var(--ease-hover);
+  }
+  .motion .card:hover,
+  .motion .snippet:hover{
+    border-color:rgba(255,255,255,0.22);
+    transform:translateY(-2px);
+  }
+  .motion .feature-cell:hover{
+    border-color:rgba(255,255,255,0.22);
+  }
+
+  /* Integration circles */
+  .motion #connect figure{
+    transition:transform var(--dur-hover) var(--ease-hover);
+  }
+  .motion #connect figure:hover{transform:scale(1.03)}
+  .motion #connect figure img,
+  .motion #connect figure canvas{
+    transition:filter var(--dur-hover) var(--ease-hover);
+  }
+  .motion #connect figure:hover img,
+  .motion #connect figure:hover canvas{filter:brightness(1.1)}
+
+  /* Roadmap pills */
+  .motion .roadmap-pill{
+    transition:border-color var(--dur-hover) var(--ease-hover);
+  }
+  .motion .roadmap-pill:hover{border-color:rgba(164,211,241,0.5)}
+
+  /* Regulation pills */
+  .motion .reg-pill{
+    transition:border-color var(--dur-hover) var(--ease-hover);
+  }
+  .motion .reg-pill:hover{border-color:rgba(164,211,241,0.5)}
+}
+
+/* Focus ring */
+.motion :focus-visible{
+  outline:2px solid var(--accent-soft);
+  outline-offset:3px;
+}
+.motion .btn:focus-visible{
+  outline-offset:3px;
+  border-radius:999px;
+}
+
+/* ══════════════════════════════════════
+   COWRIE TRIO FLOAT (#demo)
+   ══════════════════════════════════════ */
+.motion .cowrie-float{
+  animation:cowrie-float 7s var(--ease-inout) infinite;
+}
+@keyframes cowrie-float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* ══════════════════════════════════════
+   IMAGE DECODE FADE
+   ══════════════════════════════════════ */
+.motion img[loading="lazy"]{
+  opacity:0;transition:opacity 400ms var(--ease-out);
+}
+.motion img[loading="lazy"].decoded{opacity:1}
+
+/* ══════════════════════════════════════
+   COUNT-UP — reserve width
+   ══════════════════════════════════════ */
+[data-countup]{font-variant-numeric:tabular-nums}
+
+/* ══════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  .motion [data-reveal="up"],
+  .motion [data-reveal="fade"],
+  .motion [data-reveal="scale"],
+  .motion [data-hero],
+  .motion [data-stagger]>*{
+    transform:none!important;
+    transition:opacity 200ms ease!important;
+  }
+  .motion [data-reveal="line"],
+  .motion [data-reveal="line-v"]{
+    transform:none!important;
+    transition:opacity 200ms ease!important;
+    opacity:0;
+  }
+  .motion [data-reveal="line"].revealed,
+  .motion [data-reveal="line-v"].revealed{opacity:1}
+  .motion .mask-inner{
+    transform:none!important;
+    transition:opacity 200ms ease!important;
+    opacity:0;
+  }
+  .motion .mask-inner.revealed{opacity:1}
+  .motion .serif-reveal{
+    filter:none!important;
+    transition:opacity 200ms ease!important;
+  }
+  .motion .cowrie-float{animation:none}
+  .motion [data-hero="artwork"]{
+    transition:opacity 200ms ease!important;
+    transform:none!important;
+  }
+  .motion [data-hero="artwork"].revealed{opacity:0.6}
+  .pixel-drift{animation:none!important}
+  .motion .scroll-progress{display:none}
+  .motion header[data-header]{
+    transition:background 300ms ease,border-color 300ms ease!important;
+  }
+  .motion header[data-header].hidden{transform:none!important}
+}
